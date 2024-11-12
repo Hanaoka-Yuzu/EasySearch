@@ -1,0 +1,26 @@
+logging:
+  file:
+    name: /home/Disk/es/logs/gateway/gateway.log
+server:
+  port: 9850
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+        server-addr: 172.29.7.210:8848
+      config:
+        server-addr: 172.29.7.210:8848
+        file-extension: yml
+        shared-configs:
+          - data-id: common.yml
+            refresh: true
+          - data-id: gateway.yml
+            refresh: true
+          - data-id: redis.yml
+            refresh: true
+

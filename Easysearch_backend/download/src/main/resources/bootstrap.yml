@@ -1,0 +1,29 @@
+logging:
+  file:
+    name: /home/Disk/es/logs/download/download.log
+server:
+  port: 8087
+spring:
+  application:
+    name: download-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.29.7.210:8848
+        namespace: public
+      config:
+        server-addr: 172.29.7.210:8848
+        file-extension: yml
+        shared-configs: #公用配置文件
+          - data-id: download.yml
+            refresh: true
+          - data-id: common.yml
+            refresh: true
+          - data-id: mysql.yml
+            refresh: true
+          - data-id: redis.yml
+            refresh: true
+          - data-id: es.yml
+            refresh: true
+          - data-id: rocketmq.yml
+            refresh: true

@@ -1,0 +1,26 @@
+logging:
+  file:
+    name: /home/Disk/es/logs/user/user.log
+server:
+  port: 8085
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+        server-addr: 172.29.7.210:8848
+      config:
+        server-addr: 172.29.7.210:8848
+        file-extension: yml
+        group: DEFAULT_GROUP
+        shared-configs: #公用配置文件
+          - data-id: common.yml
+            refresh: true
+          - data-id: mysql.yml
+            refresh: true
+          - data-id: redis.yml
+            refresh: true

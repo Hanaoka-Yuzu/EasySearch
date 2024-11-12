@@ -1,0 +1,69 @@
+version: '2'
+services:
+  gateway:
+    image: gateway:latest
+    container_name: gateway
+    restart: unless-stopped
+    networks:
+      - searchBackend
+    ports:
+      - "9850:9850"
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/Disk/es/logs/gateway:/home/Disk/es/logs/gateway
+  download:
+    image: download:latest
+    container_name: download
+    tty: true  # replace 'always'
+    networks:
+      - searchBackend
+    ports:
+      - "8087:8087"
+    volumes:
+      - /home/Disk/es/download:/home/Disk/es/download
+      - /home/Disk/es/logs/download:/home/Disk/es/logs/download
+    environment:
+      - TZ=Asia/Shanghai
+  search:
+    image: search:latest
+    container_name: search
+    restart: unless-stopped
+    networks:
+      - searchBackend
+    ports:
+      - "9093:9093"
+    volumes:
+      - /home/Disk/es/logs/search:/home/Disk/es/logs/search
+    environment:
+      - TZ=Asia/Shanghai
+  user:
+    image: user:latest
+    container_name: user
+    restart: unless-stopped
+    networks:
+      - searchBackend
+    ports:
+      - "8085:8085"
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/Disk/es/logs/user:/home/Disk/es/logs/user
+  xmltodb:
+    image: xmltodb:latest
+    container_name: xmltodb
+    restart: unless-stopped
+    networks:
+      - searchBackend
+    ports:
+      - "9090:9090"
+    volumes:
+      - /home/Disk/es/data:/home/Disk/es/data
+      - /home/Disk/es/logs/import:/home/Disk/es/logs/import
+    environment:
+      - TZ=Asia/Shanghai
+
+
+networks:
+  searchBackend:
+    driver: bridge

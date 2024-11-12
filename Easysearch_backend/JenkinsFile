@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('SCM from Mirror') {
+            steps {
+                sh "ls -al"
+                sh "pwd"
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'es', url: 'git@git.nju.edu.cn:easy-search/easysearchbackend.git']])
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "bash make.sh"
+//                junit 'tagging/target/surefire-reports/*.xml'
+//                 step( [ $class: 'JacocoPublisher' ] )
+            }
+        }
+        stage('Start') {
+            steps {
+                sh 'docker-compose -p easy_search down || true'
+                sh 'docker-compose -p easy_search up -d'
+            }
+        }
+    }
+}

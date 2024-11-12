@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+}
+/* fade-slide */
+.fade-slide-leave-active,
+.fade-slide-enter-active {
+  transition: all 0.3s;
+}
+.fade-slide-enter-from {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+.fade-slide-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
+}
+.text-ellipsis-2 {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.van-nav-bar .van-nav-bar__arrow {
+  color: #333;
+}
+/* 去除常见标签默认的 margin 和 padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 去除列表默认样式 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+/* 去除默认的倾斜效果 */
+em,
+i {
+  font-style: normal;
+}
+/* 去除a标签默认下划线，并设置默认文字颜色 */
+a {
+  text-decoration: none;
+  color: #333;
+}
+/* 设置img的垂直对齐方式为居中对齐，去除img默认下间隙 */
+img {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+/* 去除input默认样式 */
+input {
+  border: none;
+  outline: none;
+  color: #333;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+/* 设定页面的滚动条样式 */
+::-webkit-scrollbar {
+  width: 0px;
+}
